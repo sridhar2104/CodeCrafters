@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ farmer.name }} - Crop2Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ farmer.name }}'s Products</h1>
+    </header>
+    <main>
+        <h2>Products</h2>
+        <div class="product-list">
+            {% for product in farmer.products %}
+            <div class="product-item">
+                <h3>{{ product.name }}</h3>
+                <p>Price: ${{ product.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
