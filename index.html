@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop2Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Crop2Cart</h1>
+    </header>
+    <main>
+        <h2>Available Products</h2>
+        <div class="product-list">
+            {% for product in products %}
+            <div class="product-item">
+                <h3>{{ product.name }}</h3>
+                <p>Price: ${{ product.price }}</p>
+                <p>Farmer: <a href="{{ url_for('farmer', id=product.farmer_id) }}">{{ product.farmer.name }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Add a New Product</h2>
+        <form action="{{ url_for('add_product') }}" method="POST">
+            <input type="text" name="name" placeholder="Product Name" required>
+            <input type="number" step="0.01" name="price" placeholder="Price" required>
+            <input type="number" name="farmer_id" placeholder="Farmer ID" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
